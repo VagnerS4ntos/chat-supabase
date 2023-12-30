@@ -114,7 +114,7 @@ function EditRooms() {
 	}
 
 	return (
-		<section className="mt-10 h-full pb-10">
+		<div className="mt-10 h-full pb-10">
 			<h1 className="text-xl uppercase mb-2">Editar sala</h1>
 			<label htmlFor="searchRoom">Buscar sala</label>
 			<DebounceInput
@@ -128,7 +128,7 @@ function EditRooms() {
 			{filteredData.length == 0 ? (
 				<h1 className="mt-2">Nenhuma sala encontrada</h1>
 			) : (
-				<div className="overflow-x-auto">
+				<div className="overflow-scroll">
 					<table className="border table-auto w-full mt-2">
 						<thead>
 							<tr className="bg-white text-black uppercase text-sm">
@@ -207,7 +207,7 @@ function EditRooms() {
 			{showUsers && (
 				<ShowRoomUsers id={showUsersRoomID} setShowUsers={setShowUsers} />
 			)}
-		</section>
+		</div>
 	);
 }
 

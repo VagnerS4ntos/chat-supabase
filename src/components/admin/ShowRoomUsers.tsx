@@ -47,14 +47,31 @@ function ShowRoomUsers({
 			.update({ public_room: null })
 			.eq('id', id);
 
-		if (users.length == 1) {
-			setShowUsers(false);
-		}
-
 		if (error) {
 			console.log(error.message);
 			toast.error('Algo deu errado');
+			return;
 		}
+
+		if (users.length == 1) {
+			setShowUsers(false);
+		}
+	}
+
+	async function removeAllUsers() {
+		users.forEach(async (user) => {
+			const { error } = await supabase
+				.from('users')
+				.update({ public_room: null })
+				.eq('id', user.id);
+			if (error) {
+				console.log(error.message);
+				toast.error('Algo deu errado');
+				return;
+			}
+		});
+
+		setShowUsers(false);
 	}
 
 	return (
@@ -95,7 +112,12 @@ function ShowRoomUsers({
 				) : (
 					<h1>Não há usuários nesta sala</h1>
 				)}
-
+				<button
+					className="bg-orange-700 hover:bg-orange-800 mt-2 w-full rounded-md"
+					onClick={removeAllUsers}
+				>
+					Remover todos os usuários
+				</button>
 				<button
 					className="bg-green-700 hover:bg-green-800 mt-2 w-full rounded-md"
 					data-close={true}
