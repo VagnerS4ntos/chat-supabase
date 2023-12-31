@@ -4,7 +4,8 @@
 
 body {
 	color: white;
-	background: rgb(82 82 91);
+	background: rgb(50, 50, 50);
+	/* background: rgb(82 82 91); */
 	-ms-overflow-style: none;
 	scrollbar-width: thin;
 	scrollbar-color: transparent transparent;
@@ -14,13 +15,13 @@ body {
 	height: calc(100% - 9.5rem);
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
 	display: none;
 }
 
 body::-webkit-scrollbar {
 	display: none;
-}
+} */
 
 .react-tabs__tab--selected::after {
 	display: none;

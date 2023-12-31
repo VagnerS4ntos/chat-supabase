@@ -17,9 +17,9 @@ function ShowRoomUsers({
 	const { allUsers, currentUser } = useUsers((state) => state);
 
 	const [currentPage, setCurrentPage] = React.useState(1);
-	const usersPerPege = 10;
-	const lastUserIndex = currentPage * usersPerPege;
-	const firstUserIndex = lastUserIndex - usersPerPege;
+	const usersPerPage = 10;
+	const lastUserIndex = currentPage * usersPerPage;
+	const firstUserIndex = lastUserIndex - usersPerPage;
 	const [slicedUsers, setSlicedUsers] = React.useState<userT[]>([]);
 
 	React.useEffect(() => {
@@ -112,12 +112,16 @@ function ShowRoomUsers({
 				) : (
 					<h1>Não há usuários nesta sala</h1>
 				)}
-				<button
-					className="bg-orange-700 hover:bg-orange-800 mt-2 w-full rounded-md"
-					onClick={removeAllUsers}
-				>
-					Remover todos os usuários
-				</button>
+
+				{users.length > 0 && (
+					<button
+						className="bg-orange-700 hover:bg-orange-800 mt-2 w-full rounded-md"
+						onClick={removeAllUsers}
+					>
+						Remover todos os usuários
+					</button>
+				)}
+
 				<button
 					className="bg-green-700 hover:bg-green-800 mt-2 w-full rounded-md"
 					data-close={true}
@@ -125,10 +129,10 @@ function ShowRoomUsers({
 					Fechar
 				</button>
 
-				{slicedUsers.length > usersPerPege && (
+				{slicedUsers.length > usersPerPage && (
 					<Paginate
 						dataLength={users.length}
-						dataPerPage={usersPerPege}
+						dataPerPage={usersPerPage}
 						setCurrentPage={setCurrentPage}
 					/>
 				)}
