@@ -24,7 +24,10 @@ function EditRooms() {
 		setFilteredData(allRooms);
 		const slicedRooms = allRooms.slice(firstRoomIndex, lastRoomIndex);
 		setSlicedRooms(slicedRooms);
-		if (slicedRooms.length % 10 == 0 && currentPage > 1) {
+		if (
+			currentPage > 1 &&
+			currentPage * roomsPerPage == filteredData.length + roomsPerPage
+		) {
 			setCurrentPage((prev) => prev - 1);
 		}
 	}, [allRooms, currentPage]);

@@ -29,7 +29,10 @@ function ShowRoomUsers({
 		const slicedUsers = roomUsers.slice(firstUserIndex, lastUserIndex);
 		setSlicedUsers(slicedUsers);
 
-		if (slicedUsers.length % 10 == 0 && currentPage > 1) {
+		if (
+			currentPage > 1 &&
+			currentPage * usersPerPage == users.length + usersPerPage
+		) {
 			setCurrentPage((prev) => prev - 1);
 		}
 	}, [allUsers]);
